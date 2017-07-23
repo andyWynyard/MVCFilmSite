@@ -9,6 +9,14 @@
 <title>Look Up Film By ID</title>
 </head>
 <body>
+
+<form action="callAddActorPage.do" method="GET">
+    			<input type="submit" value="Add Actor">
+  		</form>
+  		<form action="callAddFilmPage.do" method="GET">
+    			<input type="submit" value="Add Film">
+  		</form>
+
   <h3>Search Films by ID</h3>
   <form action="getTitle.do" method="GET">
     <input type="text" name="filmId">
@@ -20,6 +28,49 @@
     <input type="text" name="search">
     <input type="submit" value="Search Films">
   </form>
+  
+  <br>
+  <h3>Search Actor by Keyword</h3>
+  <form action="searchActor.do" method="GET">
+    <input type="text" name="searchActor">
+    <input type="submit" value="Search for Actor">
+  </form>
+  
+ <c:if test="${alert != null}">
+  <p><strong>"${alert}"</strong></p>
+ </c:if>
+  
+  <c:if test="${name != null}">
+  <p><strong>"${name}"</strong></p>
+ </c:if>
+  
+  <c:choose>
+  <c:when test="${actorList != null}">
+  <c:forEach items = "${actorList}" var = "actor">
+        
+    <ul>
+      <li><c:out value="${actor.firstName}" /> <c:out value="${actor.lastName}" />
+      <form action="callEditPage.do" method="GET">
+    			<input type="submit" value="Edit this Actor" name="${actor.id}">
+    			<input type="hidden" value="${actor.id}" name="actorId">
+  		</form>
+  		<form action="deleteActor.do" method="POST">
+    			<input type="submit" value="Delete this Actor">
+    			<input type="hidden" value="${actor.id}" name="actorId">
+  		</form>
+  		</li>
+
+
+    </ul>
+
+    
+    </c:forEach>
+ 	</c:when>
+  </c:choose>
+  
+  
+  
+  
   
   <c:choose>
   <c:when test="${filmTitle != null}">

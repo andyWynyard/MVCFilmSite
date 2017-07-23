@@ -15,15 +15,18 @@ public class Film {
 	private String rating;
 	private List<Actor> cast;
 
-	public boolean addActor(Actor chuckles) {
+	public boolean addActor(Actor actor) {
 		if (cast == null) {
 			cast = new ArrayList<>();
 		}
-		return cast.add(chuckles);
+		return cast.add(actor);
 	}
-	public boolean removeActor(Actor chuckles) {
+	public boolean removeActor(Actor actor) {
 		if (cast != null) {
-			return cast.remove(chuckles);
+			return cast.remove(actor);
+		}
+		else {
+			return false;
 		}
 	}
 
