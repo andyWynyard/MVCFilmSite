@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <title>View Actor</title>
 </head>
 <body>
@@ -15,12 +17,12 @@
 
 
 <form action="addActor.do" method="POST">
-  <p>Last Name</p>
-    <input type="text" name="firstName">
   <p>First Name</p>
+    <input type="text" name="firstName">
+  <p>Last Name</p>
     <input type="text" name="lastName">
     <input type="hidden" name="id" value=12>
-    <input type="submit" value="Commit Edits">
+    <input type="submit" value="Add">
     
     <!-- <input type="text" name="search">
     <input type="submit" value="Search Films"> -->

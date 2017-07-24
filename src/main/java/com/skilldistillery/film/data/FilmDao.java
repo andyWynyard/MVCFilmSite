@@ -11,4 +11,7 @@ public interface FilmDao {
 	boolean deleteActor(Actor actor);
 	boolean saveActor(Actor actor);
 	Actor getActorById(int id);
+	Film addFilm(Film film);
+	int deleteFilm(int id);
+	Actor addActorToFilm(Actor actor, Film film);
 }

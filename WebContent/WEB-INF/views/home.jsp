@@ -6,14 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <title>Look Up Film By ID</title>
 </head>
 <body>
 
-<form action="callAddActorPage.do" method="GET">
+	<form action="callAddActorPage.do" method="GET">
     			<input type="submit" value="Add Actor">
   		</form>
-  		<form action="callAddFilmPage.do" method="GET">
+ 	<form action="callAddFilmPage.do" method="GET">
     			<input type="submit" value="Add Film">
   		</form>
 
@@ -76,15 +78,14 @@
   <c:when test="${filmTitle != null}">
     <h3>${filmTitle.title}</h3>
     <ul>
-          <li>${filmTitle.description}</li>
-          <li>${filmTitle.rating}</li>
-          <li>${filmTitle.length}</li>
-          <li>${filmTitle.releaseYear}</li>
-          <li>${filmTitle.rentalDuration}</li>
-          <li>${filmTitle.rentalRate}</li>
-          <li>${filmTitle.replacementCost}</li>
-          <li>${filmTitle.id}</li>
-    </ul>
+          <li>Description: ${filmTitle.description}</li>
+          <li>Rating: ${filmTitle.rating}</li>
+          <li>Film Length (minutes): ${filmTitle.length}</li>
+          <li>Release Year: ${filmTitle.releaseYear}</li>
+          <li>Rental Duration (days): ${filmTitle.rentalDuration}</li>
+          <li>Rental Rate: ${filmTitle.rentalRate}</li>
+          <li>Replacement Cost: ${filmTitle.replacementCost}</li>
+   </ul>
     <h3>${filmTitle.title} Cast</h3>
     <ul>
          <c:forEach items = "${filmTitle.cast}" var = "actor">
@@ -92,14 +93,32 @@
          </c:forEach>
     </ul>
     
+    
+     
+      <form action="callEditFilmPage.do" method="GET">
+    			<input type="submit" value="Edit this Film" name="${filmTitle.id}">
+    			<input type="hidden" value="${filmTitle.id}" name="filmId">
+  		</form>
+  		<form action="deleteFilm.do" method="POST">
+    			<input type="submit" value="Delete this Film">
+    			<input type="hidden" value="${filmTitle.id}" name="filmId">
+  		</form>
+  		
+    
   </c:when>
   <c:when test="${filmList != null}">
     <c:forEach items = "${filmList}" var = "film">
          <h2><c:out value="${film.title}" /></h2>
     <ul>
-      <li><c:out value="${film.description}" /></li>
-      <li><c:out value="${film.rating}" /></li>
-    </ul>
+          <li>Description: ${film.description}</li>
+          <li>Rating: ${film.rating}</li>
+          <li>Film Length (minutes): ${film.length}</li>
+          <li>Release Year: ${film.releaseYear}</li>
+          <li>Rental Duration (days): ${film.rentalDuration}</li>
+          <li>Rental Rate: ${film.rentalRate}</li>
+          <li>Replacement Cost: ${film.replacementCost}</li>
+<%--           <li>Fil${filmTitle.id}</li>
+ --%>    </ul>
        <h3>${film.title} Cast</h3>
         <ul>
          <c:forEach items = "${film.cast}" var = "actor">
@@ -107,7 +126,18 @@
          </c:forEach>
        </ul>
       <br>
+      
+      <form action="callEditFilmPage.do" method="GET">
+    			<input type="submit" value="Edit this Film" name="${film.id}">
+    			<input type="hidden" value="${film.id}" name="filmId">
+  		</form>
+  		<form action="deleteFilm.do" method="POST">
+    			<input type="submit" value="Delete this Film">
+    			<input type="hidden" value="${film.id}" name="filmId">
+  		</form>
     </c:forEach>
+    
+    
   </c:when>
 </c:choose>
 

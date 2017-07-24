@@ -14,6 +14,8 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private List<Actor> cast;
+	private String specialFeatures;
+	private int languageId;
 
 	public boolean addActor(Actor actor) {
 		if (cast == null) {
@@ -124,15 +126,55 @@ public class Film {
 		this.rating = rating;
 		this.cast = cast;
 	}
+	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration, double rentalRate,
+			int length, double replacementCost, String rating) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.languageId = languageId;
+	}
 
 	public Film() {
 	}
 
+	public Film(int id, String title, String description, int releaseYear, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+	}
 	@Override
 	public String toString() {
 		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
 				+ ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate + ", length=" + length
 				+ ", replacementCost=" + replacementCost + ", rating=" + rating + ", cast=" + cast + "]";
+	}
+	public String getSpecialFeatures() {
+		return specialFeatures;
+	}
+	public void setSpecialFeatures(String specialFeatures) {
+		this.specialFeatures = specialFeatures;
+	}
+	public int getLanguageId() {
+		return languageId;
+	}
+	public void setLanguageId(int languageId) {
+		this.languageId = languageId;
 	}
 
 }

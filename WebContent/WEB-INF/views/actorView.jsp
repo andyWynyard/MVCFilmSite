@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <title>View Actor</title>
 </head>
 <body>
@@ -18,15 +20,18 @@
 
 
 <form action="editActor.do" method="POST">
-  <p>Last Name</p>
-    <input type="text" name="firstName" value="${actor.firstName}">
   <p>First Name</p>
+    <input type="text" name="firstName" value="${actor.firstName}">
+  <p>Last Name</p>
     <input type="text" name="lastName" value="${actor.lastName}">
     <input type="hidden" name="id" value="${actor.id}">
     <input type="submit" value="Commit Edits">
-    
-    <!-- <input type="text" name="search">
-    <input type="submit" value="Search Films"> -->
+  </form>
+  
+  <form action="addActorToFilm.do" method="POST">
+  <p>Add actor to film with ID: <input type="text" name="filmId"></p>
+  <input type="hidden" name="actorId" value="${actor.id}">
+    <input type="submit" value="Add to Film">
   </form>
 
 

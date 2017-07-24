@@ -93,7 +93,53 @@ public class FilmController {
 		dao.addActor(actor);	
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/home.jsp");	
-		mv.addObject("alert", "Actor was added");
+		mv.addObject("alert", "Actor  " + actor + " was added");
 		return mv;
 	}
+	@RequestMapping(path = "callAddFilmPage.do", method = RequestMethod.GET)
+	public ModelAndView goToAddFilmPage() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/views/addFilm.jsp");		
+		return mv;
+	}
+	
+	@RequestMapping(path = "addFilm.do", method = RequestMethod.POST)
+	public ModelAndView addFilm(@RequestParam(name = "id") int id, @RequestParam("title") String title,
+			@RequestParam("description") String description, @RequestParam("releaseYear") int releaseYear, 
+			@RequestParam("language") int language, @RequestParam("rentalDuration") int rentalDuration, 
+			@RequestParam("rentalRate") double rentalRate, @RequestParam("length") int length,
+			@RequestParam("replacementCost") double replacementCost, @RequestParam("rating") String rating, 
+			@RequestParam("specialFeatures") String specialFeatures) {
+		Film film = new Film(id, title, description, releaseYear, language, rentalDuration, rentalRate, length, replacementCost, rating);
+		dao.addFilm(film);	
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/views/home.jsp");	
+		mv.addObject("alert", "Film was added");
+		return mv;
+	}
+
+	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST)
+	public ModelAndView deleteFilm(@RequestParam(name = "filmId") int filmId) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(filmId);
+		Film film = dao.getFilmById(filmId);
+		String name = film.getTitle() + " with ID of " + film.getId() + " was deleted";
+		System.out.println(film.toString() + dao.deleteFilm(filmId));	
+		mv.setViewName("WEB-INF/views/home.jsp");
+		mv.addObject("name", name);
+		return mv;
+	}
+	
+	@RequestMapping(path = "addActorToFilm.do", method = RequestMethod.POST)
+	public ModelAndView addActorToFilm(@RequestParam(name = "filmId") int filmId, @RequestParam(name = "actorId") int actorId) {
+		ModelAndView mv = new ModelAndView();
+		Film film = dao.getFilmById(filmId);
+		Actor actor = dao.getActorById(actorId);
+		String name = actor.getFirstName() + " " + actor.getLastName() + " of ID " + actorId + " was added to " + film.getTitle() + " with ID of " + film.getId();
+		dao.addActorToFilm(actor, film);	
+		mv.setViewName("WEB-INF/views/home.jsp");
+		mv.addObject("name", name);
+		return mv;
+	}
+	
 }
