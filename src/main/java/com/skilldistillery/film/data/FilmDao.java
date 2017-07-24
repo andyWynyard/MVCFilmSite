@@ -14,4 +14,5 @@ public interface FilmDao {
 	Film addFilm(Film film);
 	int deleteFilm(int id);
 	Actor addActorToFilm(Actor actor, Film film);
+	Film editFilm(Film film);
 }

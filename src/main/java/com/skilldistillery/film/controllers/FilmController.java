@@ -72,8 +72,7 @@ public class FilmController {
 	@RequestMapping(path = "callEditPage.do", method = RequestMethod.GET)
 	public ModelAndView goToEditPage(@RequestParam(name = "actorId") int actorId) {
 		ModelAndView mv = new ModelAndView();
-		Actor actor = dao.getActorById(actorId);
-		
+		Actor actor = dao.getActorById(actorId);		
 		mv.setViewName("WEB-INF/views/actorView.jsp");
 		mv.addObject("actor", actor);
 		return mv;
@@ -110,7 +109,7 @@ public class FilmController {
 			@RequestParam("rentalRate") double rentalRate, @RequestParam("length") int length,
 			@RequestParam("replacementCost") double replacementCost, @RequestParam("rating") String rating, 
 			@RequestParam("specialFeatures") String specialFeatures) {
-		Film film = new Film(id, title, description, releaseYear, language, rentalDuration, rentalRate, length, replacementCost, rating);
+		Film film = new Film(id, title, description, releaseYear, language, rentalDuration, rentalRate, length, replacementCost, rating, specialFeatures);
 		dao.addFilm(film);	
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/home.jsp");	
@@ -139,6 +138,29 @@ public class FilmController {
 		dao.addActorToFilm(actor, film);	
 		mv.setViewName("WEB-INF/views/home.jsp");
 		mv.addObject("name", name);
+		return mv;
+	}
+	
+	@RequestMapping(path = "editFilm.do", method = RequestMethod.POST)
+	public ModelAndView editFilm(@RequestParam(name = "id") int id, @RequestParam("title") String title,
+			@RequestParam("description") String description, @RequestParam("releaseYear") int releaseYear, 
+			@RequestParam("language") int language, @RequestParam("rentalDuration") int rentalDuration, 
+			@RequestParam("rentalRate") double rentalRate, @RequestParam("length") int length,
+			@RequestParam("replacementCost") double replacementCost, @RequestParam("rating") String rating, 
+			@RequestParam("specialFeatures") String specialFeatures) {
+		ModelAndView mv = new ModelAndView();
+		Film film = new Film(id, title, description, releaseYear, language, rentalDuration, rentalRate, length, replacementCost, rating, specialFeatures);
+		dao.editFilm(film);
+		mv.setViewName("WEB-INF/views/home.jsp");
+		mv.addObject("alert", "Film was edited");
+		return mv;
+	}
+	@RequestMapping(path = "callEditFilmPage.do", method = RequestMethod.GET)
+	public ModelAndView goToEditFilmPage(@RequestParam(name = "filmId") int filmId) {
+		ModelAndView mv = new ModelAndView();
+		Film film = dao.getFilmById(filmId);		
+		mv.setViewName("WEB-INF/views/filmEdit.jsp");
+		mv.addObject("film", film);
 		return mv;
 	}
 	

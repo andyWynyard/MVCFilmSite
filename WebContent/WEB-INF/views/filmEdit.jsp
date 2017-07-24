@@ -7,24 +7,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add Film</title>
+<title>Edit Film</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 <body>
 
-  <h1>Add Film</h1>
+  <h1>Edit Film</h1>
  
 
 
-<form action="addFilm.do" method="POST">
+<form action="editFilm.do" method="POST">
   <p>Title</p>
-    <input type="text" name="title" placeholder="Input Title Here">
+    <input type="text" name="title" value="${film.title}">
   <p>Description</p>
-    <input type="text" name="description" placeholder="Tell us about this film">
+    <input type="text" name="description" value="${film.description}">
     <p>Release Year</p>
- 		<input type="number" min="1850" max="2050" value="2017" name="releaseYear">
+ 		<input type="number" min="1850" max="2050" value="${film.releaseYear}" name="releaseYear">
    
     
   <!--   <input type="text" name="releaseYear"> -->
@@ -42,7 +42,7 @@
     <p>Rental Duration (Days)</p>
     
       
-  		<input type="number" min="1" max="30" value="3" name="rentalDuration">
+  		<input type="number" min="1" max="30" value="${film.rentalDuration}" name="rentalDuration">
   		
     <p>Rental Rate ($)</p>
     
@@ -71,7 +71,7 @@
     
    
     <p>Length (minutes)</p>
-    <input type="number" min="1" max="360" value="120" name="length">
+    <input type="number" min="1" max="360" value="${film.length}" name="length">
      <p>Replacement Cost ($)</p>
      
      
@@ -122,10 +122,9 @@
   		<p><input type="checkbox" name="specialFeatures" value="Behind the Scenes">Behind the Scenes</p>
   	
   		
-	</select>
 	
-    <input type="hidden" name="id" value=12>
-    <input type="submit" value="Add">
+    <input type="hidden" name="id" value="${film.id}">
+    <input type="submit" value="Make Changes">
     
     <!-- <input type="text" name="search">
     <input type="submit" value="Search Films"> -->

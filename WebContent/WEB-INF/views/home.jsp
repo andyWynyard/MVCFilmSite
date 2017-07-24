@@ -85,6 +85,7 @@
           <li>Rental Duration (days): ${filmTitle.rentalDuration}</li>
           <li>Rental Rate: ${filmTitle.rentalRate}</li>
           <li>Replacement Cost: ${filmTitle.replacementCost}</li>
+          <li>Special Features: ${filmTitle.specialFeatures}</li>
    </ul>
     <h3>${filmTitle.title} Cast</h3>
     <ul>
@@ -117,6 +118,7 @@
           <li>Rental Duration (days): ${film.rentalDuration}</li>
           <li>Rental Rate: ${film.rentalRate}</li>
           <li>Replacement Cost: ${film.replacementCost}</li>
+          <li>Special Features: ${film.specialFeatures}</li>
 <%--           <li>Fil${filmTitle.id}</li>
  --%>    </ul>
        <h3>${film.title} Cast</h3>
